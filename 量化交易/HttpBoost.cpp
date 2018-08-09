@@ -6,6 +6,7 @@ using namespace cly;
 
 HttpBoost::HttpBoost(boost::asio::io_service& io_service)
 	: resolver_(io_service), socket_(io_service) {
+	response_.prepare(1024 * 20);
 }
 
 
@@ -177,7 +178,7 @@ void HttpBoost::handle_read_content(const boost::system::error_code& err) {
 	else {
 		socket_.close();
 		resolver_.cancel();
-		std::cout << "读取响应数据完毕." << std::endl;
+		//std::cout << "读取响应数据完毕." << std::endl;
 	}
 }
 
